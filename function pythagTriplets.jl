@@ -33,7 +33,7 @@ function pythagTripletsPrimitive(perimeter_max)
             b = 2m*n
             c = m*m + n*n
 
-            if a+b+c ≤ perimeter_max  &&  gcd(a,b,c) == 1
+            if a+b+c ≤ perimeter_max  &&  gcd(a,b) == 1
                 if a > b;    a, b  =  b, a; end
                 push!(triplets, [a, b, c])
             end
@@ -50,19 +50,18 @@ end
 
 #═══════════════════════════════════════════════════════════════════════════════
 function main()
-    println("\n", "─"^50, "\n")
+    println("\n", "─"^40, "\n")
 
     PERIM_MAX = 200
-
-    println("Pythagorean triplets with a perimeter limit of ", PERIM_MAX, ":\n")
     triplets = sort(pythagTriplets(200))
+    println("There are ", length(triplets), " Pythagorean triplets with a\n",
+            "perimeter limit of ", PERIM_MAX, ":\n")
     for triplet in triplets
         println(triplet)
     end
 
-    println("\n"^3, "The primitives:\n")
     triplets_pr = sort(pythagTripletsPrimitive(200))
-
+    println("\n"^6, "There are ", length(triplets_pr), " primitives:\n")
     for triplet_pr in triplets_pr
         println(triplet_pr)
     end
