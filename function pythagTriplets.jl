@@ -23,17 +23,17 @@ function pythagTripletsPrimitive(perimLIM;    sorted=true)
 
     res = Tuple{Int, Int, Int}[]
 
-	m = 2
+    m = 2
 	
-	a,b,c = 0,0,0   
-	∑lim = 6perimLIM
+    a,b,c = 0,0,0   
+    ∑lim = 6perimLIM
 	
     while a+b+c ≤ ∑lim
 		
-		m² = m*m
+	m² = m*m
 		
         for n in 1:(m-1)			
-			n² = n*n
+	    n² = n*n
 						
             a = m²-n²
             b = 2m*n
