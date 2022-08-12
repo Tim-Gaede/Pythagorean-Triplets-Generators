@@ -19,31 +19,36 @@ end
 
 
 #───────────────────────────────────────────────────────────────────────────────
-function pythagTripletsPrimitive(perimeter_max)
+function pythagTripletsPrimitive(perimLIM;    sorted=true)
 
-    triplets = []
-    a = 0;    b = 0;    c = 0
+    res = Tuple{Int, Int, Int}[]
 
-    m = 2
-    while a+b+c <= 6perimeter_max
-
-        for n = 1 : m-1
-
-            a = m*m - n*n
+	m = 2
+	
+	a,b,c = 0,0,0   
+	∑lim = 6perimLIM
+	
+    while a+b+c ≤ ∑lim
+		
+		m² = m*m
+		
+        for n in 1:(m-1)			
+			n² = n*n
+						
+            a = m²-n²
             b = 2m*n
-            c = m*m + n*n
+            c = m²+n²
 
-            if a+b+c ≤ perimeter_max  &&  gcd(a,b) == 1
-                if a > b;    a, b  =  b, a; end
-                push!(triplets, [a, b, c])
+            if a+b+c ≤ perimLIM  &&  gcd(a,b) == 1
+                a < b ?  push!(res, (a,b,c))  :  push!(res, (b,a,c))
             end
         end
 
-        m += 1
+        m+=1
     end
 
 
-    triplets
+    sorted ?  sort(res)  :  res
 end
 #───────────────────────────────────────────────────────────────────────────────
 
