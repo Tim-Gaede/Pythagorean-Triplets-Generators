@@ -1,27 +1,27 @@
 #───────────────────────────────────────────────────────────────────────────────
 # Timothy Gaede
-# last updated 2019-08-23
-function pythagTriplets(perimeter_max)
+# last updated 2022-09-20
+function pythagTriplets(perimeter_max;   sorted = true)
 
     triplets_pr = pythagTripletsPrimitive(perimeter_max)
 
-    triplets = []
+    res = []
     for triplet_pr in triplets_pr
         multi_max = perimeter_max ÷ sum(triplet_pr)
         for multi = 1 : multi_max
-            push!(triplets, multi*triplet_pr)
+            push!(res, multi*triplet_pr)
         end
     end
 
-    triplets
+    sorted ?  sort(res)  :  res
 end
 #───────────────────────────────────────────────────────────────────────────────
 
 
 #───────────────────────────────────────────────────────────────────────────────
-function pythagTripletsPrimitive(perimLIM;    sorted=true)
+function pythagTripletsPrimitive(perimLIM)
 
-    res = Tuple{Int, Int, Int}[]
+    res = Vector{Int}[]
 
     m = 2
 	
@@ -31,24 +31,27 @@ function pythagTripletsPrimitive(perimLIM;    sorted=true)
     while a+b+c ≤ ∑lim
 		
 	m² = m*m
-		
+
+		 
         for n in 1:(m-1)			
-	    n² = n*n
+	    	n² = n*n
 						
             a = m²-n²
             b = 2m*n
-            c = m²+n²
-
-            if a+b+c ≤ perimLIM  &&  gcd(a,b) == 1
-                a < b ?  push!(res, (a,b,c))  :  push!(res, (b,a,c))
+           
+			c = m²+n²
+            if a+b+c ≤ perimLIM &&  gcd(a,b) == 1 
+                a < b ?  push!(res, [a,b,c])  :  push!(res, [b,a,c])				 
             end
         end
+		 
+		
 
         m+=1
     end
 
-
-    sorted ?  sort(res)  :  res
+ 
+    res
 end
 #───────────────────────────────────────────────────────────────────────────────
 
