@@ -40,7 +40,7 @@ function pythagTripletsPrimitive(perimLIM)
             b = 2m*n
            
 			c = m²+n²
-            if a+b+c ≤ perimLIM &&  gcd(a,b) == 1 
+            if a+b+c ≤ perimLIM  &&  gcd(a,b) == 1 
                 a < b ?  push!(res, [a,b,c])  :  push!(res, [b,a,c])				 
             end
         end
