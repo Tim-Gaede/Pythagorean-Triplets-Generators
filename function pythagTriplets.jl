@@ -19,7 +19,7 @@ end
 
 
 #───────────────────────────────────────────────────────────────────────────────
-function pythagTripletsPrimitive(perimLIM)
+function pythagTripletsPrimitivePerimLIM(perimLIM)
 
     res = Vector{Int}[]
 
@@ -32,14 +32,14 @@ function pythagTripletsPrimitive(perimLIM)
 		
 	m² = m*m
 
-		 
-        for n in 1:(m-1)			
-	    	n² = n*n
+	m % 2 == 0 ?  (ñ = 1 : 2 : (m-1))  :  (ñ = 2 : 2 : (m-1))
+        for n in ñ			
+	    n² = n*n
 						
             a = m²-n²
             b = 2m*n
            
-			c = m²+n²
+	    c = m²+n²
             if a+b+c ≤ perimLIM  &&  gcd(a,b) == 1 
                 a < b ?  push!(res, [a,b,c])  :  push!(res, [b,a,c])				 
             end
